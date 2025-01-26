@@ -2,10 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class leo : MonoBehaviour
+public class taro : MonoBehaviour
 {
     public AnimationCurve curve;
     float time = 0f;
+
+    //child object references. grabs the arm pivots from the scene
+    public GameObject rightArmPivot1;
+    public GameObject rightArmPivot2;
+    public GameObject leftArmPivot1;
+    public GameObject leftArmPivot2;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,4 +37,5 @@ public class leo : MonoBehaviour
             time = 0f;
         }
     }
+    
 }
