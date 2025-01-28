@@ -13,6 +13,9 @@ public class jackie : MonoBehaviour
     //curve time variable. each curve only needs one since they are in sync
     float time = 0f;
 
+    //increment speed
+    float speed = 1f;
+
     //child object references. grabs the arm pivots from the scene
     public GameObject jackieHead;
     public GameObject jackieArm1;
@@ -30,6 +33,15 @@ public class jackie : MonoBehaviour
     void Update()
     {
         bounceSprite();
+
+        //collects mouse pos
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+        //checks if mouse is hovering over jackie
+        if (mousePos.x > -2 && mousePos.x < 2)
+        {
+            jackieDance();
+        }
     }
 
     void bounceSprite()
@@ -38,7 +50,7 @@ public class jackie : MonoBehaviour
         transform.localScale = new Vector3(1, curve.Evaluate(time), 1);
 
         //increments time
-        time += 1.0f * Time.deltaTime;
+        time += speed * Time.deltaTime;
 
         //resets time if equal to 1
         if (time > 1)
@@ -46,15 +58,15 @@ public class jackie : MonoBehaviour
             time = 0f;
         }
 
-        
+        speed = (Camera.main.ScreenToWorldPoint(Input.mousePosition).y + 5) / 5;
     }
 
 
-    void jackieDance(float t)
+    void jackieDance()
     {
         //moves each arm and the head to the beat
-        jackieHead.transform.localPosition = new Vector3(jackieHead.transform.localPosition.x, headCurve.Evaluate(t), 1);
-        jackieArm1.transform.localPosition = new Vector3(jackieArm1.transform.localPosition.x, armCurve1.Evaluate(t), 2);
-        jackieArm2.transform.localPosition = new Vector3(jackieArm2.transform.localPosition.x, armCurve2.Evaluate(t), 1);
+        jackieHead.transform.localPosition = new Vector3(jackieHead.transform.localPosition.x, headCurve.Evaluate(time), 1);
+        jackieArm1.transform.localPosition = new Vector3(jackieArm1.transform.localPosition.x, armCurve1.Evaluate(time), 2);
+        jackieArm2.transform.localPosition = new Vector3(jackieArm2.transform.localPosition.x, armCurve2.Evaluate(time), 1);
     }
 }

@@ -15,6 +15,8 @@ public class taro : MonoBehaviour
 
     //curve time
     float time = 0f;
+    //increment speed
+    float speed = 1f;
 
     //child object references. grabs the arm pivots from the scene
     public GameObject rightArmPivot1;
@@ -35,9 +37,15 @@ public class taro : MonoBehaviour
     {
         //call the bounce function
         bounceSprite();
-        taroDance();
 
-        Console.WriteLine();
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+        //checks if mouse is hovering over taro
+        if (mousePos.x <-2)
+        {
+            taroDance();
+        }
+
     }
 
     void bounceSprite()
@@ -46,13 +54,15 @@ public class taro : MonoBehaviour
         transform.localScale = new Vector3(1, curve.Evaluate(time), 1);
 
         //adds the speed to the curve multiplied by the delta time
-        time += 1.0f * Time.deltaTime;
+        time += speed * Time.deltaTime;
 
         //resets the timer if it hits 1
         if (time > 1)
         {
             time = 0f;
         }
+
+        speed = (Camera.main.ScreenToWorldPoint(Input.mousePosition).y + 5) / 5;
     }
 
     void taroDance()

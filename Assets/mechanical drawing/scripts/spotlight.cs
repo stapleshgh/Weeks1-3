@@ -29,25 +29,28 @@ public class spotlight : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Console.WriteLine(spriteRenderer.color);
         followCursor();
+        
         
     }
 
     void followCursor()
     {
+        //capture mouse pos
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
+
+        //if mouse is on left of screen, lerp to taro's position
         if (mousePos.x < -2)
         {
             transform.position = Vector3.Lerp(transform.position, taroPos, Time.deltaTime * 4);
 
         }
-        else if (mousePos.x > -2 && mousePos.x < 2)
+        else if (mousePos.x > -2 && mousePos.x < 2) //if mouse is in middle, lerp to jackie
         {
             transform.position = Vector3.Lerp(transform.position, jackiePos, Time.deltaTime * 4);
         }
-        else if (mousePos.x > 2)
+        else if (mousePos.x > 2) //if mouse is on right, lerp to leo
         {
             transform.position = Vector3.Lerp(transform.position, leoPos, Time.deltaTime * 4);
         }

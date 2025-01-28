@@ -6,7 +6,11 @@ public class leo : MonoBehaviour
 {
     public AnimationCurve curve;
     float time = 0f;
-    // Start is called before the first frame update
+
+    //increment speed
+    float speed = 1f;
+
+    
     void Start()
     {
         time = 0.0f;
@@ -22,11 +26,13 @@ public class leo : MonoBehaviour
     {
         transform.localScale = new Vector3(1, curve.Evaluate(time), 1);
 
-        time += 1.0f * Time.deltaTime;
+        time += speed * Time.deltaTime;
 
         if (time > 1)
         {
             time = 0f;
         }
+
+        speed = (Camera.main.ScreenToWorldPoint(Input.mousePosition).y + 5) / 5;
     }
 }
