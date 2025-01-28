@@ -65,8 +65,8 @@ public class jackie : MonoBehaviour
     void jackieDance()
     {
         //moves each arm and the head to the beat
-        jackieHead.transform.localPosition = new Vector3(jackieHead.transform.localPosition.x, headCurve.Evaluate(time), 1);
+        jackieHead.transform.localPosition = new Vector3(jackieHead.transform.localPosition.x, headCurve.Evaluate(time), -1);
         jackieArm1.transform.localPosition = new Vector3(jackieArm1.transform.localPosition.x, armCurve1.Evaluate(time), 2);
-        jackieArm2.transform.localPosition = new Vector3(jackieArm2.transform.localPosition.x, armCurve2.Evaluate(time), 1);
+        jackieArm2.transform.localPosition = new Vector3(jackieArm2.transform.localPosition.x, armCurve2.Evaluate(time), -1);
     }
 }
