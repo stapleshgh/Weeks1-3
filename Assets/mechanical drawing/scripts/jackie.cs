@@ -46,18 +46,19 @@ public class jackie : MonoBehaviour
 
     void bounceSprite()
     {
-        //sets local scale equal to curve evaluation. same as all other sprites
+        //sets local scale equal to curve evaluation. same as all other sprites, makes it bounce
         transform.localScale = new Vector3(1, curve.Evaluate(time), 1);
 
         //increments time
         time += speed * Time.deltaTime;
 
-        //resets time if equal to 1
+        //resets time if equal to 1 so that animation loops
         if (time > 1)
         {
             time = 0f;
         }
 
+        //grabs mouse position and uses it for animation speed
         speed = (Camera.main.ScreenToWorldPoint(Input.mousePosition).y + 5) / 5;
     }
 

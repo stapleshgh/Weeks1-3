@@ -38,6 +38,7 @@ public class taro : MonoBehaviour
         //call the bounce function
         bounceSprite();
 
+        //grabs mouse positon
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
         //checks if mouse is hovering over taro
@@ -56,12 +57,13 @@ public class taro : MonoBehaviour
         //adds the speed to the curve multiplied by the delta time
         time += speed * Time.deltaTime;
 
-        //resets the timer if it hits 1
+        //resets the timer if it hits 1 so animation loops
         if (time > 1)
         {
             time = 0f;
         }
 
+        //uses mouse position y to evaluate animation speed
         speed = (Camera.main.ScreenToWorldPoint(Input.mousePosition).y + 5) / 5;
     }
 
